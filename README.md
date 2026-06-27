@@ -1,66 +1,130 @@
-# Early Detection of Breast Cancer – A Machine Learning Approach to Classification and Anomaly Detection
+# Early Detection of Breast Cancer Using Machine Learning
 
-## ℹ️ About
-This project focuses on the early detection of breast cancer using supervised and unsupervised machine learning techniques. By analyzing diagnostic measurements from digitized images of breast mass cell nuclei, the models aim to predict whether a tumor is malignant or benign. The goal is to support early diagnosis efforts, improve patient outcomes, and demonstrate the practical application of machine learning in healthcare.
+## About
 
-## 📌 Project Overview
-This project applies various machine learning algorithms to accurately detect and classify breast cancer tumors as benign or malignant using diagnostic features. It demonstrates the end-to-end ML workflow — from data preprocessing to evaluation and bias-variance analysis.
+This project applies supervised and unsupervised machine learning techniques to support the early detection of breast cancer. Using diagnostic measurements from digitized images of breast mass cell nuclei, the project builds models that classify tumors as malignant or benign.
 
-## 📁 Dataset
-- **Source**: BreastCancer_Screening.csv
-- **Size**: 569 rows × 32 columns
-- **Target Variable**: `Diagnosis` — (`M` = Malignant, `B` = Benign)
-- **Features**: Radius, Texture, Area, Smoothness, etc. (10 original features and their mean, worst, and SE values)
+The goal is to demonstrate an end-to-end machine learning workflow for healthcare classification, including data preprocessing, model training, hyperparameter tuning, evaluation, bias-variance analysis, and anomaly detection.
 
-## 🧠 Models Implemented
-- Logistic Regression
-- Decision Tree (Tuned)
-- Random Forest (Tuned)
-- XGBoost (Tuned)
-- Neural Network (Keras/TensorFlow)
-- Manual Logistic Regression (from scratch)
-- K-Means Clustering
-- Isolation Forest (Anomaly Detection)
+## Project Overview
 
-## 📊 Performance Summary
+Breast cancer diagnosis is a high-impact classification problem where model performance must be evaluated carefully. This project compares multiple machine learning approaches for binary classification and explores how unsupervised methods can identify natural groupings and potential anomalies in the diagnostic data.
+
+The workflow includes:
+
+* Data cleaning and preparation
+* Exploratory data analysis
+* Feature scaling and preprocessing
+* Supervised classification modeling
+* Hyperparameter tuning
+* Bias-variance analysis
+* Unsupervised clustering
+* Anomaly detection
+* Model evaluation using classification metrics
+
+## Dataset
+
+* **Source file:** `data/BreastCancer_Screening.csv`
+* **Size:** 569 rows × 32 columns
+* **Target variable:** `Diagnosis`
+* **Classes:** `M` = Malignant, `B` = Benign
+* **Features:** Diagnostic measurements such as radius, texture, area, smoothness, and related mean, standard error, and worst-value measurements
+
+## Models Implemented
+
+### Supervised Learning
+
+* Logistic Regression
+* Decision Tree Classifier
+* Tuned Decision Tree
+* Random Forest Classifier
+* Tuned Random Forest
+* XGBoost Classifier
+* Tuned XGBoost
+* Neural Network using Keras/TensorFlow
+* Manual Logistic Regression implemented from scratch
+
+### Unsupervised Learning
+
+* K-Means Clustering
+* Isolation Forest for anomaly detection
+
+## Performance Summary
 
 | Model               | Accuracy | Precision | Recall | F1 Score |
-|--------------------|----------|-----------|--------|----------|
-| Logistic Regression| 0.982    | 1.000     | 0.952  | 0.976    |
-| Decision Tree      | 0.929    | 0.904     | 0.904  | 0.904    |
-| Random Forest      | 0.973    | 1.000     | 0.928  | 0.962    |
-| XGBoost (Tuned)    | 0.956    | 1.000     | 0.881  | 0.936    |
-| Neural Network     | 0.982    | 0.976     | 0.976  | 0.976    |
+| ------------------- | -------: | --------: | -----: | -------: |
+| Logistic Regression |    0.982 |     1.000 |  0.952 |    0.976 |
+| Decision Tree       |    0.929 |     0.904 |  0.904 |    0.904 |
+| Random Forest       |    0.973 |     1.000 |  0.928 |    0.962 |
+| XGBoost (Tuned)     |    0.956 |     1.000 |  0.881 |    0.936 |
+| Neural Network      |    0.982 |     0.976 |  0.976 |    0.976 |
 
-## 📈 Evaluation Insights
-- **Bias-Variance Tradeoff** analyzed via learning curves and cross-validation.
-- **Neural Network** showed strong generalization with minimal overfitting (validated by training vs validation plots).
-- **Decision Tree** exhibited high variance despite tuning.
-- **XGBoost** and **Random Forest** performed robustly after tuning.
+## Evaluation Insights
 
-## 🧪 Unsupervised Learning
-- **K-Means** was used to explore natural groupings using selected features.
-- **Isolation Forest** successfully flagged potential malignancies as anomalies, cross-validated with actual labels.
+* Logistic Regression and the Neural Network achieved the strongest overall accuracy.
+* The Neural Network showed strong generalization based on training and validation performance.
+* Decision Tree modeling showed higher variance despite tuning.
+* Random Forest and XGBoost provided robust ensemble-based performance after tuning.
+* Recall is especially important in this project because false negatives in a healthcare detection context may carry higher risk.
 
-## 💡 Key Takeaways
-- Feature scaling and model tuning significantly improved predictive performance.
-- Ensemble models (Random Forest & XGBoost) consistently outperformed basic classifiers.
-- Neural networks, when regularized, offer high accuracy and generalization.
+## Unsupervised Learning Insights
 
-## 📂 File Structure
+K-Means Clustering was used to explore natural groupings within the diagnostic feature space. Isolation Forest was also applied to identify potential anomalies and compare detected anomalies against known diagnosis labels.
 
+These unsupervised methods helped expand the project beyond standard classification and showed how anomaly detection techniques can provide additional perspectives on healthcare data.
+
+## Key Takeaways
+
+* Feature scaling and preprocessing played an important role in model performance.
+* Model comparison helped identify trade-offs between accuracy, precision, recall, and F1-score.
+* Ensemble models performed strongly after tuning, but simpler models such as Logistic Regression also produced highly competitive results.
+* Neural networks can perform well on structured diagnostic data when evaluated carefully.
+* Unsupervised learning added useful exploratory insight into class separation and anomaly behavior.
+
+## Repository Structure
+
+```text
+breast_cancer_classification/
+  data/
+    BreastCancer_Screening.csv
+  notebooks/
+    breast_cancer_detection_ml.ipynb
+    data_conversion.ipynb
+  .gitignore
+  README.md
 ```
-├── Early Detection of Breast Cancer.ipynb             # Main notebook
-├── BreastCancer_Screening.csv                         # Dataset
-├── README.md                                          # Project overview and documentation
+
+## Notebooks
+
+The main modeling notebook is located at:
+
+```text
+notebooks/breast_cancer_detection_ml.ipynb
 ```
 
-## 🛠️ Tools & Libraries
-- Python, Pandas, NumPy, Matplotlib, Seaborn
-- Scikit-learn, XGBoost
-- TensorFlow / Keras
+The supporting data conversion notebook is located at:
 
-## 👨‍💻 Author
-Edidiong Ibokete  
+```text
+notebooks/data_conversion.ipynb
+```
+
+## Tools and Libraries
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-learn
+* XGBoost
+* TensorFlow / Keras
+* Jupyter Notebook
+
+## Portfolio Relevance
+
+This project demonstrates practical machine learning skills relevant to data science and applied AI roles, including classification modeling, model evaluation, feature analysis, neural networks, anomaly detection, and clear technical documentation.
+
+## Author
+
+Edidiong Ibokete
 [GitHub Profile](https://github.com/Eddy-bok)
-
