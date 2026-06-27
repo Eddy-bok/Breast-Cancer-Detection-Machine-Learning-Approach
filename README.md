@@ -51,20 +51,28 @@ The workflow includes:
 
 ## Performance Summary
 
-| Model               | Accuracy | Precision | Recall | F1 Score |
-| ------------------- | -------: | --------: | -----: | -------: |
-| Logistic Regression |    0.982 |     1.000 |  0.952 |    0.976 |
-| Decision Tree       |    0.929 |     0.904 |  0.904 |    0.904 |
-| Random Forest       |    0.973 |     1.000 |  0.928 |    0.962 |
-| XGBoost (Tuned)     |    0.956 |     1.000 |  0.881 |    0.936 |
-| Neural Network      |    0.982 |     0.976 |  0.976 |    0.976 |
+The table below summarizes model performance on the test set. Precision, recall, and F1-score are reported for the malignant class.
+
+| Model                 | Accuracy | Precision | Recall | F1 Score |
+| --------------------- | -------: | --------: | -----: | -------: |
+| Logistic Regression   |    0.982 |     1.000 |  0.952 |    0.976 |
+| Decision Tree (Tuned) |    0.956 |     1.000 |  0.881 |    0.937 |
+| Random Forest         |    0.974 |     1.000 |  0.929 |    0.963 |
+| XGBoost (Tuned)       |    0.974 |     1.000 |  0.929 |    0.963 |
+| Neural Network        |    0.982 |     0.976 |  0.976 |    0.976 |
+
+## Model Comparison Visualization
+
+![Bias-Variance Trade-off Analysis](images/bias_variance_tradeoff_analysis.png)
+
+The chart compares each model using validation accuracy and the gap between training and validation accuracy. Models closer to the upper-left region show stronger generalization with lower variance.
 
 ## Evaluation Insights
 
 * Logistic Regression and the Neural Network achieved the strongest overall accuracy.
 * The Neural Network showed strong generalization based on training and validation performance.
-* Decision Tree modeling showed higher variance despite tuning.
-* Random Forest and XGBoost provided robust ensemble-based performance after tuning.
+* The tuned Decision Tree had the largest train-validation gap among the compared models, suggesting higher variance.
+* Random Forest and XGBoost provided strong ensemble-based performance after tuning.
 * Recall is especially important in this project because false negatives in a healthcare detection context may carry higher risk.
 
 ## Unsupervised Learning Insights
@@ -87,6 +95,8 @@ These unsupervised methods helped expand the project beyond standard classificat
 breast_cancer_classification/
   data/
     BreastCancer_Screening.csv
+  images/
+    bias_variance_tradeoff_analysis.png
   notebooks/
     breast_cancer_detection_ml.ipynb
     data_conversion.ipynb
